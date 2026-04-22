@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sandpoint Strategic Finance</title>
+    <meta
+      name="description"
+      content="Strategic finance advisory for SaaS and growth companies. Investor-facing communication, modeling, capital strategy, and transaction execution."
+    />
+    <style>
+      :root {
+        --bg: #0a0a0a;
+        --surface: #121212;
+        --surface-2: #171717;
+        --line: #232323;
+        --text: #fafafa;
+        --muted: #9ca3af;
+        --violet: #7c3aed;
+        --violet-hover: #6d28d9;
+        --sand: #c2a36b;
+        --max: 1180px;
+        --radius: 24px;
+        --shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.14), transparent 28%), var(--bg);
+        color: var(--text);
+        line-height: 1.5;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(calc(100% - 40px), var(--max));
+        margin: 0 auto;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(14px);
+        background: rgba(10, 10, 10, 0.78);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 0;
+        gap: 24px;
+      }
+
+      .brand {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .brand-name {
+        font-size: 1.05rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+
+      .brand-sub {
+        font-size: 0.72rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+
+      .nav a {
+        color: var(--muted);
+        font-size: 0.95rem;
+        transition: color 0.2s ease;
+      }
+
+      .nav a:hover {
+        color: var(--text);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 48px;
+        padding: 0 20px;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        border: 1px solid transparent;
+        transition: 0.2s ease;
+        cursor: pointer;
+      }
+
+      .btn-primary {
+        background: var(--violet);
+        color: #fff;
+        box-shadow: 0 12px 30px rgba(124, 58, 237, 0.3);
+      }
+
+      .btn-primary:hover {
+        background: var(--violet-hover);
+        transform: translateY(-1px);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        border-color: rgba(255, 255, 255, 0.1);
+        color: var(--text);
+      }
+
+      .btn-secondary:hover {
+        border-color: rgba(255, 255, 255, 0.22);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .hero {
+        padding: 88px 0 72px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 34px;
+        align-items: stretch;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        margin-bottom: 18px;
+        color: var(--sand);
+        font-size: 0.78rem;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(3rem, 6vw, 5.6rem);
+        line-height: 0.96;
+        letter-spacing: -0.05em;
+        max-width: 10ch;
+      }
+
+      .hero-copy p {
+        max-width: 62ch;
+        margin: 24px 0 0;
+        color: var(--muted);
+        font-size: 1.08rem;
+        line-height: 1.8;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 14px;
+        margin-top: 34px;
+        flex-wrap: wrap;
+      }
+
+      .hero-card {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015));
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 30px;
+        padding: 28px;
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-card::before {
+        content: "";
+        position: absolute;
+        inset: -30% auto auto 58%;
+        width: 220px;
+        height: 220px;
+        background: radial-gradient(circle, rgba(124, 58, 237, 0.22), transparent 70%);
+        pointer-events: none;
+      }
+
+      .card-label {
+        color: var(--sand);
+        font-size: 0.78rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .focus-list {
+        margin: 22px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 18px;
+      }
+
+      .focus-item {
+        padding-top: 18px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .focus-item strong {
+        display: block;
+        font-size: 1rem;
+        margin-bottom: 6px;
+      }
+
+      .focus-item span {
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      .band {
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .band-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        padding: 18px 0;
+      }
+
+      .band-grid div {
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      section {
+        padding: 88px 0;
+      }
+
+      .section-head {
+        max-width: 720px;
+        margin-bottom: 36px;
+      }
+
+      .section-head h2 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3rem);
+        letter-spacing: -0.04em;
+      }
+
+      .section-head p {
+        margin: 14px 0 0;
+        color: var(--muted);
+        font-size: 1.03rem;
+        line-height: 1.8;
+      }
+
+      .cards-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: var(--radius);
+        padding: 28px;
+        box-shadow: var(--shadow);
+      }
+
+      .card h3 {
+        margin: 0;
+        font-size: 1.25rem;
+        letter-spacing: -0.02em;
+      }
+
+      .card p {
+        margin: 14px 0 0;
+        color: var(--muted);
+        font-size: 0.98rem;
+        line-height: 1.75;
+      }
+
+      .card ul {
+        margin: 18px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 10px;
+      }
+
+      .card li {
+        color: var(--muted);
+        font-size: 0.94rem;
+        padding-left: 16px;
+        position: relative;
+      }
+
+      .card li::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--violet);
+        position: absolute;
+        left: 0;
+        top: 0.58rem;
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 36px;
+        align-items: start;
+      }
+
+      .statement {
+        background: linear-gradient(180deg, rgba(124, 58, 237, 0.1), rgba(255, 255, 255, 0.02));
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 30px;
+        padding: 34px;
+      }
+
+      .statement h2 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3.1rem);
+        letter-spacing: -0.05em;
+      }
+
+      .statement p,
+      .why-copy p {
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.8;
+        margin: 18px 0 0;
+      }
+
+      .pill-grid {
+        display: grid;
+        gap: 14px;
+        margin-top: 8px;
+      }
+
+      .pill {
+        padding: 18px 20px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.02);
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      .process-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .step-num {
+        color: var(--sand);
+        font-size: 0.82rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+      }
+
+      .contact-wrap {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 30px;
+      }
+
+      .contact-card,
+      .contact-form {
+        background: var(--surface-2);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 28px;
+        padding: 30px;
+      }
+
+      .contact-form form {
+        display: grid;
+        gap: 16px;
+      }
+
+      label {
+        display: block;
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--text);
+        padding: 14px 16px;
+        font: inherit;
+        outline: none;
+      }
+
+      input:focus,
+      textarea:focus {
+        border-color: rgba(124, 58, 237, 0.6);
+        box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.14);
+      }
+
+      textarea {
+        min-height: 150px;
+        resize: vertical;
+      }
+
+      .footer {
+        padding: 26px 0 38px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid,
+        .split,
+        .contact-wrap,
+        .cards-3,
+        .process-grid,
+        .band-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav {
+          display: none;
+        }
+
+        .hero {
+          padding-top: 64px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .header-inner {
+          padding: 16px 0;
+        }
+
+        .btn {
+          width: 100%;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+        }
+
+        section {
+          padding: 72px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="#top" class="brand">
+          <span class="brand-name">Sandpoint</span>
+          <span class="brand-sub">Strategic Finance</span>
+        </a>
+
+        <nav class="nav">
+          <a href="#services">Services</a>
+          <a href="#approach">Approach</a>
+          <a href="#focus">Focus</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <a href="#contact" class="btn btn-primary">Start a Conversation</a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">Strategic finance for growth companies</span>
+            <h1>From boardroom narrative to model-level detail.</h1>
+            <p>
+              Sandpoint helps SaaS and growth companies connect financial insight to real business decisions. The work spans investor and board communication, strategic finance, cash management, capital raises, modeling, and transaction execution.
+            </p>
+            <div class="hero-actions">
+              <a href="#contact" class="btn btn-primary">Request Intro Call</a>
+              <a href="#services" class="btn btn-secondary">See Services</a>
+            </div>
+          </div>
+
+          <aside class="hero-card">
+            <div class="card-label">Where Sandpoint fits</div>
+            <ul class="focus-list">
+              <li class="focus-item">
+                <strong>Management, investors, and boards</strong>
+                <span>Bridge financial detail with clear stakeholder communication.</span>
+              </li>
+              <li class="focus-item">
+                <strong>High-level strategy and deep execution</strong>
+                <span>Move from company-level priorities to modeling, forecasting, and scenarios.</span>
+              </li>
+              <li class="focus-item">
+                <strong>Capital and transaction readiness</strong>
+                <span>Support fundraising, diligence, M&amp;A, and decision-making under pressure.</span>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <div class="band">
+        <div class="container band-grid">
+          <div>Investor and board communication</div>
+          <div>Modeling and scenario analysis</div>
+          <div>Cash flow and capital efficiency</div>
+          <div>M&amp;A and transaction support</div>
+        </div>
+      </div>
+
+      <section id="services">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Services</span>
+            <h2>Strategic oversight with the ability to go deep.</h2>
+            <p>
+              The work is not limited to reporting. It centers on helping leadership teams make sharper decisions, communicate them clearly, and back them with real analysis.
+            </p>
+          </div>
+
+          <div class="cards-3">
+            <article class="card">
+              <h3>Strategic Finance</h3>
+              <p>Connect numbers to operating decisions and long-range strategy.</p>
+              <ul>
+                <li>Financial planning and forecasting</li>
+                <li>Scenario analysis and decision support</li>
+                <li>Runway, cash flow, and capital efficiency</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>Investor and Board Alignment</h3>
+              <p>Translate complex financials into clear narratives for external stakeholders.</p>
+              <ul>
+                <li>Board and investor communication</li>
+                <li>Metrics, narrative, and strategic framing</li>
+                <li>Bridge management priorities with capital expectations</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>Capital and Transactions</h3>
+              <p>Support the moments where precision matters most.</p>
+              <ul>
+                <li>Debt and equity raises</li>
+                <li>M&amp;A, buy-side and sell-side support</li>
+                <li>Diligence preparation and execution</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="approach">
+        <div class="container split">
+          <div class="statement">
+            <span class="eyebrow">Approach</span>
+            <h2>High-level enough for strategy. Deep enough for the spreadsheet.</h2>
+            <p>
+              Sandpoint is designed for leadership teams that need more than surface-level advice. The work can stay strategic when needed, but it can also move directly into models, forecasts, assumptions, and operating detail.
+            </p>
+          </div>
+
+          <div class="why-copy">
+            <p>
+              The differentiator is range. Sandpoint helps companies align finance with strategy, explain the numbers to investors and boards, and then dig into the analysis required to support those decisions.
+            </p>
+            <p>
+              That includes investor perspective, startup and operator reality, cash flow discipline, capital planning, and transaction execution. The goal is not just cleaner reporting. The goal is better decisions and stronger outcomes.
+            </p>
+            <div class="pill-grid">
+              <div class="pill">Connect finance to strategy</div>
+              <div class="pill">Translate numbers into clear narratives</div>
+              <div class="pill">Move seamlessly from oversight to execution</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="focus">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Core Focus</span>
+            <h2>Built for companies operating in real complexity.</h2>
+            <p>
+              Sandpoint is strongest where investor expectations, operating reality, and strategic finance need to stay aligned.
+            </p>
+          </div>
+
+          <div class="process-grid">
+            <article class="card">
+              <div class="step-num">01</div>
+              <h3>Clarify the financial picture</h3>
+              <p>Understand cash flow, operating drivers, runway, and the real implications behind the numbers.</p>
+            </article>
+
+            <article class="card">
+              <div class="step-num">02</div>
+              <h3>Align the story</h3>
+              <p>Shape a coherent narrative for management, boards, investors, and stakeholders around strategy and performance.</p>
+            </article>
+
+            <article class="card">
+              <div class="step-num">03</div>
+              <h3>Execute where it matters</h3>
+              <p>Support capital raises, transaction work, detailed modeling, and finance decisions that need more than surface guidance.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container contact-wrap">
+          <div class="contact-card">
+            <span class="eyebrow">Contact</span>
+            <h2 style="margin: 0; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.04em;">Start with a focused conversation.</h2>
+            <p style="margin-top: 18px; color: var(--muted); line-height: 1.8;">
+              Whether the need is strategic finance support, investor communication, capital planning, or transaction work, the first step is a direct conversation about the business and the decision in front of it.
+            </p>
+          </div>
+
+          <div class="contact-form">
+            <form>
+              <div>
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" />
+              </div>
+
+              <div>
+                <label for="company">Company</label>
+                <input id="company" name="company" type="text" placeholder="Company name" />
+              </div>
+
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@company.com" />
+              </div>
+
+              <div>
+                <label for="message">What are you working on?</label>
+                <textarea id="message" name="message" placeholder="Briefly describe the company, stage, and what you need."></textarea>
+              </div>
+
+              <button class="btn btn-primary" type="submit">Request Intro Call</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">Sandpoint Strategic Finance</div>
+    </footer>
+  </body>
+</html>
